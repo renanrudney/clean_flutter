@@ -8,24 +8,13 @@
             "name": "Flutter: Run all Tests",
             "type": "dart",
             "request": "launch",
-            "program": "./test/"
+            "program": "test/"
         },
         {
             "name": "clean_flutter",
             "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "clean_flutter (profile mode)",
-            "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "clean_flutter (release mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
+            "program": "lib/main/main.dart"
         }
     ]
 }
