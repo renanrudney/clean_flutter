@@ -104,7 +104,8 @@ void main() {
       expect(future, throwsA(HttpError.badRequest));
     });
 
-    test('Should return BadRequestError if post returns 400', () async {
+    test('Should return BadRequestError if post returns 400 with data',
+        () async {
       mockResponse(400);
 
       final future = sut.request(url: url, method: 'post');
