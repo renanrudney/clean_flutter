@@ -19,20 +19,7 @@ class App extends StatelessWidget {
           primaryColor: primaryColor,
           primaryColorDark: primaryColorDark,
           primaryColorLight: primaryColorLight,
-          colorScheme: ColorScheme(
-              primary: primaryColor,
-              primaryVariant: primaryColorDark,
-              secondary: primaryColorLight,
-              secondaryVariant: primaryColorLight,
-              surface: Colors.white,
-              background: Colors.white,
-              error: Colors.white,
-              onPrimary: Colors.white,
-              onSecondary: Colors.white,
-              onSurface: Colors.white,
-              onBackground: Colors.white,
-              onError: Colors.white,
-              brightness: Brightness.light),
+          accentColor: primaryColor,
           backgroundColor: Colors.white,
           textTheme: TextTheme(
               headline1: TextStyle(
