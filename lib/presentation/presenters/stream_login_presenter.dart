@@ -24,7 +24,7 @@ class LoginState {
       password != null;
 }
 
-class StreamLoginPresenter implements LoginPresenter {
+class StreamLoginPresenter {
   final Validation validation;
   final Authentication authentication;
   var _controller = StreamController<LoginState>.broadcast();

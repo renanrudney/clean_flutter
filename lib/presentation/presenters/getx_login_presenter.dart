@@ -10,23 +10,28 @@ import '../protocols/protocols.dart';
 class GetxLoginPresenter extends GetxController implements LoginPresenter {
   final Validation validation;
   final Authentication authentication;
+  final SaveCurrentAccount saveCurrentAccount;
 
   String _email;
   String _password;
   var _emailError = RxString();
   var _passwordError = RxString();
   var _mainError = RxString();
+  var _navigateTo = RxString();
   var _isFormValid = false.obs;
   var _isLoading = false.obs;
 
   Stream<String> get emailErrorStream => _emailError.stream;
   Stream<String> get passwordErrorStream => _passwordError.stream;
   Stream<String> get mainErrorStream => _mainError.stream;
+  Stream<String> get navigateToStream => _navigateTo.stream;
   Stream<bool> get isFormValidStream => _isFormValid.stream;
   Stream<bool> get isLoadingStream => _isLoading.stream;
 
   GetxLoginPresenter(
-      {@required this.validation, @required this.authentication});
+      {@required this.validation,
+      @required this.authentication,
+      @required this.saveCurrentAccount});
 
   void validateEmail(String email) {
     _email = email;
@@ -49,14 +54,16 @@ class GetxLoginPresenter extends GetxController implements LoginPresenter {
   }
 
   Future<void> auth() async {
-    _isLoading.value = true;
     try {
-      await authentication
+      _isLoading.value = true;
+      final account = await authentication
           .auth(AuthenticationParams(email: _email, secret: _password));
+      await saveCurrentAccount.save(account);
+      _navigateTo.value = '/surveys';
     } on DomainError catch (error) {
       _mainError.value = error.description;
+      _isLoading.value = false;
     }
-    _isLoading.value = false;
   }
 
   void dispose() {}
